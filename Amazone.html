@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazone - Everything You Need, Delivered</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: #232f3e;
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            width: 35px;
+            height: 35px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: #ff9900;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: white;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #ff9900;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background: #ff9900;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 4px 4px 0;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .search-btn:hover {
+            background: #e88900;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: #ffffff;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff9900;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background: #37475a;
+            padding: 0.5rem 0;
+        }
+
+        .nav-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-bar a:hover {
+            color: #ff9900;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #37475a 0%, #232f3e 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: #ff9900;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #e88900;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            margin-bottom: 3rem;
+        }
+
+        .features h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #232f3e;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #232f3e;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            margin: 0 -1rem;
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .products h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #232f3e;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #666;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: #232f3e;
+            font-size: 1.1rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #b12704;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-rating {
+            display: flex;
+            gap: 0.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .star {
+            color: #ff9900;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #232f3e;
+            color: #ffffff;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff9900;
+        }
+
+        .footer-bottom {
+            background: #131a22;
+            text-align: center;
+            padding: 1rem;
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #ff9900;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-assistant:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-assistant span {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .search-container {
+                order: 2;
+                max-width: 100%;
+            }
+
+            .nav-links {
+                order: 3;
+                justify-content: center;
+            }
+
+            .hero-banner h1 {
+                font-size: 2rem;
+            }
+
+            .hero-banner p {
+                font-size: 1rem;
+            }
+
+            .nav-bar-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .features-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #232f3e;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10000;
+            max-width: 300px;
+            border-left: 4px solid #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <!-- REPLACE THIS WITH YOUR LOGO IMAGE -->
+                <img src="Future Interns\Task 3\amazone__1_-removebg-preview" alt="Amazone Logo" class="logo-image" >
+                <!-- Backup logo icon -->
+                <div class="logo-icon">A</div>
+                Amazone
+            </a>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search products..." id="searchBox">
+                <button class="search-btn" onclick="performSearch()">🔍</button>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Hello, Sign in<br><strong>Account & Lists</strong></a>
+                <a href="#" class="nav-link">Returns<br><strong>& Orders</strong></a>
+                <div class="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <div class="nav-bar-container">
+            <a href="#">All</a>
+            <a href="#">Today's Deals</a>
+            <a href="#">Customer Service</a>
+            <a href="#">Registry</a>
+            <a href="#">Gift Cards</a>
+            <a href="#">Sell</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </nav>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Welcome to Amazone</h1>
+            <p>Discover millions of products with Best recommendations and fast delivery</p>
+            <button class="cta-button" onclick="startShopping()">Start Shopping</button>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="features">
+            <h2>Why Choose Amazone?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Fast & Free Delivery</h3>
+                    <p>Get your orders delivered quickly with our extensive logistics network and AI-optimized routes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Top Recommendations</h3>
+                    <p>Discover products you'll love with our intelligent recommendation system that learns your preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Shopping</h3>
+                    <p>Shop with confidence knowing your data and transactions are protected by advanced security measures.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 Support</h3>
+                    <p>Get help anytime with our AI-powered customer service and dedicated support team.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Find competitive prices and exclusive deals on millions of products across all categories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Easy Returns</h3>
+                    <p>Hassle-free returns and exchanges with our customer-friendly return policy.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="products">
+        <div class="products-container">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card" onclick="viewProduct('smartphone')">
+                    <div class="product-image">📱</div>
+                    <div class="product-info">
+                        <h3>Latest Smartphone</h3>
+                        <div class="product-price">40000 ₹</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="product-description">High-performance smartphone with advanced camera and long battery life</p>
+                    </div>
+                </div>
+                <div class="product-card" onclick="viewProduct('headphones')">
+                    <div class="product-image">🎧</div>
+                    <div class="product-info">
+                        <h3>Wireless Headphones</h3>
+                        <div class="product-price">5000 ₹</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="product-description">Premium noise-canceling headphones with crystal clear sound</p>
+                    </div>
+                </div>
+                <div class="product-card" onclick="viewProduct('laptop')">
+                    <div class="product-image">💻</div>
+                    <div class="product-info">
+                        <h3>Gaming Laptop</h3>
+                        <div class="product-price">90000 ₹</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="product-description">High-performance gaming laptop with RTX graphics and fast SSD</p>
+                    </div>
+                </div>
+                <div class="product-card" onclick="viewProduct('watch')">
+                    <div class="product-image">⌚</div>
+                    <div class="product-info">
+                        <h3>Smart Watch</h3>
+                        <div class="product-price">29999 ₹</div>
+                        <div class="product-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="product-description">Feature-rich smartwatch with health monitoring and fitness tracking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Get to Know Us</h4>
+                <ul>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About Amazone</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Make Money with Us</h4>
+                <ul>
+                    <li><a href="#">Sell products on Amazone</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                    <li><a href="#">Self-Publish with Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Amazone Payment Products</h4>
+                <ul>
+                    <li><a href="#">Amazone Business Card</a></li>
+                    <li><a href="#">Shop with Points</a></li>
+                    <li><a href="#">Reload Your Balance</a></li>
+                    <li><a href="#">Amazone Currency Converter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Let Us Help You</h4>
+                <ul>
+                    <li><a href="#">Amazone and COVID-19</a></li>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Shipping Rates & Policies</a></li>
+                    <li><a href="#">Returns & Replacements</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amazone.com, Inc. or its affiliates</p>
+        </div>
+    </footer>
+
+    <div class="ai-assistant" onclick="toggleAIChat()" title="AI Shopping Assistant">
+        <span>🤖</span>
+    </div>
+
+    <script>
+        function performSearch() {
+            const searchTerm = document.getElementById('searchBox').value;
+            if (searchTerm.trim()) {
+                showNotification(`Searching for "${searchTerm}"... AI found ${Math.floor(Math.random() * 1000) + 100} results!`);
+            }
+        }
+
+        function startShopping() {
+            showNotification("Welcome! Browse our featured products below or use the search bar to find specific items.");
+            document.querySelector('.products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function viewProduct(productType) {
+            const messages = {
+                'smartphone': 'This smartphone has excellent reviews and is currently on sale!',
+                'headphones': 'These headphones are bestsellers with free shipping available.',
+                'laptop': 'This gaming laptop is perfect for work and gaming with great performance.',
+                'watch': 'This smartwatch tracks your health and syncs with your phone seamlessly.'
+            };
+            showNotification(messages[productType] || 'Great choice! This product has excellent ratings.');
+        }
+
+        function toggleAIChat() {
+            showNotification("AI Assistant: Hello! I can help you find products, compare prices, and answer questions. What are you looking for today?");
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = Math.floor(Math.random() * 5);
+            document.querySelector('.cart-count').textContent = count;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Show/hide logo image based on availability
+            const logoImg = document.querySelector('.logo-image');
+            const logoIcon = document.querySelector('.logo-icon');
+            
+            logoImg.onerror = function() {
+                logoImg.style.display = 'none';
+                logoIcon.style.display = 'flex';
+            };
+            
+            logoImg.onload = function() {
+                logoImg.style.display = 'block';
+                logoIcon.style.display = 'none';
+            };
+        });
+
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>
